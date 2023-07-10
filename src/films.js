@@ -27,9 +27,9 @@ function moviesAverageOfDirector(movies, director) {
   return moviesAverage(filmsFromDirector);
 
 }
-function moviesAverage(specificMovies){
+function moviesAverage(specificMovies) {
   let sumRates = specificMovies.reduce((accumulator, film) => accumulator + film.score, 0);
-  return sumRates / specificMovies.length;
+  return Math.round(((sumRates / specificMovies.length) + Number.EPSILON) * 100) / 100;
 }
 
 // Exercise 4:  Alphabetic order by title 
@@ -77,22 +77,11 @@ function orderByYear(movies) {
 }
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(movies, genre) {
-// get moveis form catefory - then call movies average()
-let moviesByGenre = movies.map( movie => if ([...movies.genre].includes(genre)){
-  return movie
-} )
-
-
-
-
-return moviesAverage(moviesByGenre);
+  // get moveis form catefory - then call movies average()
+  let moviesByGenreWithScore = movies.filter(movie => ([...movie.genre].includes(genre) && movie.score != ""));
+  return moviesAverage(moviesByGenreWithScore);
 }
-function genres (movies, genre){
-  if ([...movies.genre].includes(genre)){
-    return movie
-  }
 
-}
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
