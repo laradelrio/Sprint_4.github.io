@@ -1,60 +1,96 @@
 // Exercise 1: Get the array of all directors.
-
-const getAllDirectors = (movies) =>  movies.map(movie => movie.director);
+const getAllDirectors = (movies) => movies.map(movie => movie.director);
 console.log(getAllDirectors);
 
-    /*function getAllDirectors(movies){
-      return movies.map(movie => movie.director);
-    }
-    */
+/*function getAllDirectors(movies){
+  return movies.map(movie => movie.director);
+}
+*/
 
-    /*function getAllDirectors(array) {
-      let result =  ???;
-      console.log("EXERCICE 1 ->", result);
-      return result;
-    }*/
+/*function getAllDirectors(array) {
+  let result =  ???;
+  console.log("EXERCICE 1 ->", result);
+  return result;
+}*/
 
 // Exercise 2: Get the films of a certain director
-const getMoviesFromDirector = (movies,director) => movies.filter(movie => movie.director===director);
+const getMoviesFromDirector = (movies, director) => movies.filter(movie => movie.director === director);
 console.log(getMoviesFromDirector);
-    /*function getMoviesFromDirector(movies, director) {
-      return movies.filter(movie => movie.director===director);
-    }*/
+/*function getMoviesFromDirector(movies, director) {
+  return movies.filter(movie => movie.director===director);
+}*/
 
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(movies, director) {
-      let filmsFromDirector = getMoviesFromDirector(movies,director);
-      return filmsFromDirector.reduce((averageRate,film) => (averageRate + film.rate),0); 
+  let filmsFromDirector = getMoviesFromDirector(movies, director);
+  return moviesAverage(filmsFromDirector);
+
+}
+function moviesAverage(specificMovies){
+  let sumRates = specificMovies.reduce((accumulator, film) => accumulator + film.score, 0);
+  return sumRates / specificMovies.length;
 }
 
 // Exercise 4:  Alphabetic order by title 
-const orderAlphabetically = movies => movies.sort
-
 function orderAlphabetically(movies) {
-  let alphabeticallyMovies =  movies.sort((a,b) =>{
-    
-    if (a.name < nameB){
+  let movieList = [...movies];
+  let alphabeticallyMovies = movieList.sort((a, b) => {
+
+    if (a.title < b.title) {
       return -1;
     }
-    if (a.name > b.name){
+    if (a.title > b.title) {
       return 1;
     }
     return 0;
-  })
-  let alphabeticallyMovies20 = alphabeticallyMovies.slice(0,20);
-  let alphabeticallyMoviesName20 = alphabeticallyMovies20.map( movie => movie.name);
-  return alphabeticallyMoviesName20;
+  });
 
+  let alphabeticallyMovies20 = alphabeticallyMovies.slice(0, 20);
+  let alphabeticallyMoviesName20 = alphabeticallyMovies20.map(movie => movie.title);
+  return alphabeticallyMoviesName20;
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
+function orderByYear(movies) {
+  let movieList = [...movies];
+  return movieList.sort((a, b) => {
+    //sorts by year
+    if (a.year < b.year) {
+      return -1;
+    }
+    if (a.year > b.year) {
+      return 1;
+    }
+    //if year the same, sorts bu title
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+
+    return 0;
+  });
+
 
 }
-
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
+function moviesAverageByCategory(movies, genre) {
+// get moveis form catefory - then call movies average()
+let moviesByGenre = movies.map( movie => if ([...movies.genre].includes(genre)){
+  return movie
+} )
+
+
+
+
+return moviesAverage(moviesByGenre);
+}
+function genres (movies, genre){
+  if ([...movies.genre].includes(genre)){
+    return movie
+  }
 
 }
 
@@ -65,7 +101,7 @@ function hoursToMinutes() {
 
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear() {
-  
+
 }
 
 
