@@ -83,21 +83,55 @@ function moviesAverageByCategory(movies, genre) {
 
 
 // Exercise 7: Modify the duration of movies to minutes
+const TestMovies =[
+{
+  title: 'The Lord of the Rings: The Return of the King',
+  year: 2003,
+  director: 'Peter Jackson',
+  duration: '3h 21min',
+  genre: ['Adventure', 'Drama', 'Fantasy'],
+  score: 8.9
+},
+{
+  title: 'Il buono, il brutto, il cattivo',
+  year: 1966,
+  director: 'Sergio Leone',
+  duration: '3h 2min',
+  genre: ['Western'],
+  score: 8.9
+},
+]
 function hoursToMinutes(movies) {
+let moviesCopy = [...movies];
+ moviesCopy.forEach(movie => movie.duration = calcMin(movie));
+return moviesCopy;
+console.log(TestMovies);
 
+}
 
-//  let movieListMin = [...movies];
-
-let updatedMovieList = movies.forEach(movie => movie.duration=minDuration);
-  return updatedMovieList;
+function calcMin(movie){
+  let hour = parseInt(movie.duration.charAt(0,movie.duration.indexOf("h")));
+  let min =parseInt(movie.duration.substring((movie.duration.indexOf("min")-2),movie.duration.indexOf("min")));
  
-};
+  let totalMin = min + hour*60;
+  console.log(totalMin);
+  return totalMin;   
+ 
+  // let min= parseInt(movie.duration.substring(0,movie.duration.indexOf("h")));
+  // let hour= parseInt(movie.duration.substring((movie.duration.indexOf("min")-2),movie.duration.indexOf("min")));
+  // return min + (hour*60);
+  //  
+}
+// 
+ 
 
-const minDuration = (movies) => movies.reduce((minDuration, movie) => { 
-  minDuration + parseInt((movie.duration.substring(0,movie.duration.indexOf("h"))))
-  +
-  parseInt(movie.duration.substring((movie.duration.indexOf("min")-2),movie.duration.indexOf("min")));
-},0);
+// const minDuration = (movies) => movies.reduce((minDuration, movie) => { 
+//   minDuration + 
+//   parseInt((movie.duration.substring(0,movie.duration.indexOf("h"))))
+//   +
+//   parseInt(movie.duration.substring((movie.duration.indexOf("min")-2),movie.duration.indexOf("min")));
+// },0); //parseInt
+
 
 
 
