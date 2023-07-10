@@ -1,6 +1,5 @@
 // Exercise 1: Get the array of all directors.
 const getAllDirectors = (movies) => movies.map(movie => movie.director);
-console.log(getAllDirectors);
 
 /*function getAllDirectors(movies){
   return movies.map(movie => movie.director);
@@ -15,7 +14,7 @@ console.log(getAllDirectors);
 
 // Exercise 2: Get the films of a certain director
 const getMoviesFromDirector = (movies, director) => movies.filter(movie => movie.director === director);
-console.log(getMoviesFromDirector);
+
 /*function getMoviesFromDirector(movies, director) {
   return movies.filter(movie => movie.director===director);
 }*/
@@ -84,9 +83,29 @@ function moviesAverageByCategory(movies, genre) {
 
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
+function hoursToMinutes(movies) {
 
-}
+
+//  let movieListMin = [...movies];
+
+let updatedMovieList = movies.forEach(movie => movie.duration=minDuration);
+  return updatedMovieList;
+ 
+};
+
+const minDuration = (movies) => movies.reduce((minDuration, movie) => { 
+  minDuration + parseInt((movie.duration.substring(0,movie.duration.indexOf("h"))))
+  +
+  parseInt(movie.duration.substring((movie.duration.indexOf("min")-2),movie.duration.indexOf("min")));
+},0);
+
+
+
+// let hours= movie.duration.substring(0,movie.indexOf("h"));
+// let min = movie.duration.substring((movie.indexOf("min")-2),movie.indexOf("min"));
+
+// let minDuration= min+(hours*60);
+
 
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear() {
