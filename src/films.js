@@ -92,7 +92,6 @@ function calcMin(movie) {
   }
 
   let totalMin = min + hour * 60;
-  console.log(totalMin);
   return totalMin;
 }
  //Find movies by year, sort them by score, return best score movie in array
