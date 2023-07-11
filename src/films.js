@@ -8,8 +8,8 @@ const getMoviesFromDirector = (movies, director) => movies.filter(movie => movie
 function moviesAverageOfDirector(movies, director) {
   let filmsFromDirector = getMoviesFromDirector(movies, director);
   return moviesAverage(filmsFromDirector);
-
 }
+
 function moviesAverage(specificMovies) {
   let sumRates = specificMovies.reduce((accumulator, film) => accumulator + film.score, 0);
   return Math.round(((sumRates / specificMovies.length) + Number.EPSILON) * 100) / 100;
@@ -45,7 +45,7 @@ function orderByYear(movies) {
     if (a.year > b.year) {
       return 1;
     }
-    //if year the same, sorts bu title
+    //if year the same, sorts by title
     if (a.title < b.title) {
       return -1;
     }
@@ -66,21 +66,20 @@ function moviesAverageByCategory(movies, genre) {
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(movies) {
-
   let moviesCopy = movies.map(movie => {
     return {
       title: movie.title,
-      year: movie.title,
+      year: movie.year,
       director: movie.director,
       duration: calcMin(movie),
       genre: movie.genre,
       score: movie.score,
     }
   });
-
   return moviesCopy;
 }
 
+//get duration in hours and minutes and convert it to only minutes
 function calcMin(movie) {
 
   let hour = parseInt(movie.duration.charAt(0, movie.duration.indexOf("h")));
@@ -96,12 +95,24 @@ function calcMin(movie) {
   console.log(totalMin);
   return totalMin;
 }
+ //Find movies by year, sort them by score, return best score movie in array
+function bestFilmOfYear(movies,year) {
+  let moviesByYear = movies.filter(movie => movie.year === year);
+  let moviesByYearScore = moviesByYear.sort((a,b) => {
+    if(a.score<b.score){
+      return 1;
+    }
+    if (a.score> b.score){
+      return -1;
+    }
+    return 0;
+  });
+  
+  let bestFilmOfYear = [];
+  bestFilmOfYear.push(moviesByYearScore[0]);
 
-function bestFilmOfYear() {
-
+  return bestFilmOfYear;
 }
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
